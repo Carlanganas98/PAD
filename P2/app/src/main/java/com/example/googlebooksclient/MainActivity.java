@@ -13,18 +13,22 @@ import java.nio.file.Files;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText bookAutor;
-    private EditText bookTitle;
+    private EditText bookAutorEdit;
+    private EditText bookTitleEdit;
     private RadioGroup group;
     private TextView bookSearch;
+    private TextView bookAutorText;
+    private TextView bookTitleText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bookSearch = findViewById(R.id.bookSearch);
-        bookAutor = findViewById(R.id.bookAuthor);
-        bookTitle = findViewById(R.id.bookTitle);
+        bookAutorEdit = findViewById(R.id.bookAuthor);
+        bookTitleEdit = findViewById(R.id.bookTitle);
+        bookAutorText = findViewById(R.id.bookAuthorText);
+        bookTitleText = findViewById(R.id.bookTitleText);
         group = findViewById(R.id.radioGroup);
     }
 

@@ -18,14 +18,14 @@ public class NetworkClass {
     private static final String MAX_RESULTS = "maxResults";
     private static final String PRINT_TYPE = "printType";
 
-    public static String getBookInfo(String queryString){
+    public static String getBookInfo(String queryString, String printType){
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
         String bookJSONString = null;
 
         try {
             Uri builtUri = Uri.parse(BASE_URL).buildUpon().appendQueryParameter(QUERY_PARAM, queryString)
-                    .appendQueryParameter(MAX_RESULTS, "10").appendQueryParameter(PRINT_TYPE, "books")
+                    .appendQueryParameter(MAX_RESULTS, "10").appendQueryParameter(PRINT_TYPE, printType)
                     .build();
 
             URL requestUrl = new URL(builtUri.toString());

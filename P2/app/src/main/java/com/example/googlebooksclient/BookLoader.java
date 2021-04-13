@@ -10,16 +10,18 @@ import androidx.loader.content.AsyncTaskLoader;
 public class BookLoader extends AsyncTaskLoader<String> {
 
     private String queryString;
+    private String printType;
 
-    public BookLoader(@NonNull Context context,String qs) {
+    public BookLoader(@NonNull Context context,String qs, String pt) {
         super(context);
         queryString = qs;
+        printType = pt;
     }
 
     @Nullable
     @Override
     public String loadInBackground() {
-        return NetworkClass.getBookInfo(queryString);
+        return NetworkClass.getBookInfo(queryString, printType);
     }
 
     @Override

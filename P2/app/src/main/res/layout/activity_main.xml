@@ -83,6 +83,23 @@
 
         </RadioGroup>
 
+        <TextView
+            android:id="@+id/bookTitleText"
+            android:layout_width="287dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintBottom_toTopOf="@+id/bookAuthorText"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+            app:layout_constraintVertical_bias="0.163"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <TextView
+            android:id="@+id/bookAuthorText"
+            android:layout_width="283dp"
+            android:layout_height="28dp"
+            tools:layout_editor_absoluteX="26dp"
+            tools:layout_editor_absoluteY="413dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
