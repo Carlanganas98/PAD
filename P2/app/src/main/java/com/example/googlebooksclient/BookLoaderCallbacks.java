@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
 
@@ -15,8 +14,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
+
 //Comprobar que se puede hacer extends AppCompatActivity
-public class BookLoaderCallbacks extends AppCompatActivity implements LoaderManager.LoaderCallbacks<String> {
+public class BookLoaderCallbacks implements LoaderManager.LoaderCallbacks<List<BookInfo>> {
 
     private EditText bookAutorEdit;
     private EditText bookTitleEdit;
@@ -24,15 +25,23 @@ public class BookLoaderCallbacks extends AppCompatActivity implements LoaderMana
     private TextView bookSearch;
     private TextView bookAutorText;
     private TextView bookTitleText;
+    private MainActivity mA;
+
+    protected static final String EXTRA_QUERY = "q";
+    protected static final String EXTRA_PRINT_TYPE = "printType";
+
+    public BookLoaderCallbacks (MainActivity m){
+        mA = m;
+    }
 
     @NonNull
     @Override
-    public Loader<String> onCreateLoader(int id, @Nullable Bundle args) {
-        return new BookLoader(this,args.getString("queryString"),args.getString("printType"));
+    public Loader<List<BookInfo>> onCreateLoader(int id, @Nullable Bundle args) {
+        return new BookLoader(mA,args.getString("queryString"),args.getString("printType"));
     }
 
     @Override
-    public void onLoadFinished(@NonNull Loader<String> loader, String data) {
+    public void onLoadFinished(@NonNull Loader<List<BookInfo>> loader, List<BookInfo> data) {
         try {
             JSONObject jsonObject = new JSONObject(data);
             JSONArray itemsArray = jsonObject.getJSONArray("items");
@@ -74,7 +83,7 @@ public class BookLoaderCallbacks extends AppCompatActivity implements LoaderMana
     }
 
     @Override
-    public void onLoaderReset(@NonNull Loader<String> loader) {
+    public void onLoaderReset(@NonNull Loader<List<BookInfo>> loader) {
 
     }
 }

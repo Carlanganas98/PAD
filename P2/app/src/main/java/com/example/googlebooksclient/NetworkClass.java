@@ -3,12 +3,16 @@ package com.example.googlebooksclient;
 import android.net.Uri;
 import android.util.Log;
 
+import org.json.JSONException;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 public class NetworkClass {
     private static final String LOG_TAG = NetworkClass.class.getSimpleName();
@@ -18,7 +22,7 @@ public class NetworkClass {
     private static final String MAX_RESULTS = "maxResults";
     private static final String PRINT_TYPE = "printType";
 
-    public static String getBookInfo(String queryString, String printType){
+    public static List<BookInfo> getBookInfo(String queryString, String printType) throws MalformedURLException, JSONException {
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
         String bookJSONString = null;
@@ -64,7 +68,7 @@ public class NetworkClass {
                 }
             }
             Log.d(LOG_TAG,bookJSONString);
-            return bookJSONString;
+            return BookInfo.fromJsonResponse(bookJSONString);
         }
     }
 }

@@ -1,13 +1,18 @@
 package com.example.googlebooksclient;
 
 import android.content.Context;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.loader.content.AsyncTaskLoader;
+import androidx.loader.content.Loader;
 
-public class BookLoader extends AsyncTaskLoader<String> {
+import org.json.JSONException;
+
+import java.net.MalformedURLException;
+import java.util.List;
+
+public class BookLoader extends AsyncTaskLoader<List<BookInfo>> {
 
     private String queryString;
     private String printType;
@@ -20,8 +25,13 @@ public class BookLoader extends AsyncTaskLoader<String> {
 
     @Nullable
     @Override
-    public String loadInBackground() {
-        return NetworkClass.getBookInfo(queryString, printType);
+    public List<BookInfo> loadInBackground() {
+        try {
+            return NetworkClass.getBookInfo(queryString, printType);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
