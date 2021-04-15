@@ -1,5 +1,6 @@
 package com.example.googlebooksclient;
 
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -12,14 +13,21 @@ public class BooksResultListAdapter extends RecyclerView.Adapter<BooksResultList
 
     private ArrayList<BookInfo> mBooksData;
 
+    protected class ViewHolder extends RecyclerView.ViewHolder{
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+        }
+    }
+
     public BooksResultListAdapter(){
         mBooksData = new ArrayList<>();
     }
 
-    @NonNull
     @Override
     public BooksResultListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View itemView = this.inflater.inflate(R.layout.recycler_view_item, parent, false);
+        return new ViewHolder(itemView, this);
     }
 
     @Override
